@@ -98,7 +98,7 @@ function Body() {
           { hidden: !session }
         )}>
           <div
-            className='dropdown dropdown-top dropdown-center join'
+            className='join'
           >
             <div className={cn(
               'join-item badge badge-soft',
@@ -150,27 +150,6 @@ function Body() {
                       "537.3C331.9 475.9 344 410.7 344 344.9L344 320z"
                     ]).join('')}/>
               </svg>
-            </div>
-            <div
-              {...C(
-                'dropdown-content w-full h-10 bg-accent-content rounded-box z-1',
-                'shadow-xl overflow-hidden border-1 border-base-content/25 inset-shadow-primary'
-              )}
-            >
-              <button
-                {...C(
-                  'btn btn-outline w-full btn-error border-0',
-                  'shadow-error hover:shadow-base-300',
-                )}
-                style={{
-                  boxShadow: (
-                    'inset 0px 0px 2rem color-mix' +
-                      '(in oklab, var(--tw-shadow-color) 20%, transparent)'
-                  )
-                }}
-              >
-                logout
-              </button>
             </div>
             <div className='join-item w-1 h-full bg-base-100' />
             <button
