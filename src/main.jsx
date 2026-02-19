@@ -1,5 +1,11 @@
 import { render } from 'preact'
-import './index.css'
+import './style.css'
 import { App } from './app.jsx'
 
-render(<App />, document.getElementById('app'))
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const loginToken = urlParams.get('loginToken') || (
+  localStorage.getItem('loginToken')
+);
+
+render(<App loginToken={loginToken} />, document.getElementById('app'));
