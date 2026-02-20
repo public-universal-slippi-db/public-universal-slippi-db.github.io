@@ -15,6 +15,7 @@
   },
   "devDependencies": {
     "@preact/preset-vite": "^2.10.2",
+    "@slippi/slippi-js": "^9.0.0",
     "@tailwindcss/vite": "^4.2.0",
     "classnames": "^2.5.1",
     "daisyui": "^5.5.18",
