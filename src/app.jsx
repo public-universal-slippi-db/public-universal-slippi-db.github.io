@@ -123,7 +123,7 @@ function TableRow(props) {
       {...(props.id ? { id: props.id } : {})}
       onClick={props.onClick || (() => {})}
       className={cn(
-        'min-w-165',
+        'min-w-167',
         'flex h-12 items-center gap-0',
         { 'cursor-pointer hover:bg-gray-900': !!props.onClick },
         { 'bg-gray-700 hover:bg-gray-700': props.isActive },
@@ -134,7 +134,7 @@ function TableRow(props) {
       <div className={cellCn('min-w-50 w-50')}>
         {props.cells[0]}
       </div>
-      <div className={cellCn('min-w-18 w-15')}>
+      <div className={cellCn('min-w-20 w-15')}>
         {props.cells[1]}
       </div>
       <div className={cellCn('min-w-15 w-15')}>
