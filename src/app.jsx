@@ -181,6 +181,12 @@ function skelRow() {
   );
 }
 
+function getRootFontSize() {
+  const rawFS = window.getComputedStyle(document.documentElement).fontSize;
+  return parseFloat(rawFS);
+}
+function remToPx(rem) { return getRootFontSize() * rem; }
+
 function SessionedPage() {
   const X = useX();
   const sessionData = X.state.sessionData || {};
@@ -193,7 +199,18 @@ function SessionedPage() {
   function onNewActiveComboId() {
     if (!X.activeComboId) { return; }
     const rowId = `comboRow-${X.activeComboId}`;
-    console.log('MAKE SURE IN SCROLL WINDOW', { rowId });
+    const rootEl = document.getElementById('combo-scroll-root');
+    const rowEl = document.getElementById(rowId);
+    if (!rootEl || !rowEl) { return; }
+    const rootRect = rootEl.getBoundingClientRect();
+    const rowRect = rowEl.getBoundingClientRect();
+    const trueTop = rowRect.top - rootRect.top;
+    if (trueTop < 0 || (trueTop + rowRect.height) > rootRect.height) {
+      rootEl.scrollTo({
+        top: rootEl.scrollTop + trueTop - remToPx(4),
+        behavior: 'smooth',
+      })
+    }
   }
   useEffect(onNewActiveComboId, [X.activeComboId]);
 
@@ -315,7 +332,8 @@ function SessionedPage() {
                   hlKills(c, `${Math.round(c.damage)}%`),
                   hlKills(c, `${(c.frames / 60).toFixed(2)}s`),
                   hlKills(c, `${c.moves.length}`),
-                  hlKills(c, `${c.openingType}`),
+                  // hlKills(c, `${c.openingType}`),
+                  hlKills(c, `${(c.damage * c.moves.length / c.frames)}`),
                 ]}
               />
         ))}
@@ -465,6 +483,9 @@ function cleanData(data) {
     if (!c) { return false; }
     if (c.moves.length < 2) { return false; }
     if (!isOnYt(c.gameId)) { return false; }
+    const game = games[c.gameId];
+    // TODO fix lol
+    if (game.op.characterId !== Slp.Character.YOSHI) { return false; }
     return true;
   }
   data.sortedComboIds = data.sortedComboIds.filter(isComboActive);
