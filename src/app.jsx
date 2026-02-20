@@ -333,7 +333,7 @@ function SessionedPage() {
                   hlKills(c, `${(c.frames / 60).toFixed(2)}s`),
                   hlKills(c, `${c.moves.length}`),
                   // hlKills(c, `${c.openingType}`),
-                  hlKills(c, `${(c.damage * c.moves.length / c.frames)}`),
+                  hlKills(c, `${c.openingType}`),
                 ]}
               />
         ))}
