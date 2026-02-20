@@ -470,6 +470,7 @@ function cleanData(data) {
   data.sortedComboIds = data.sortedComboIds.filter(isComboActive);
   let activeComboInd = 0;
   data.sortedComboIds.forEach((comboId, ind) => {
+    data.combos[comboId].id = comboId;
     if (comboId !== sel) { return; }
     activeComboInd = ind;
   });
